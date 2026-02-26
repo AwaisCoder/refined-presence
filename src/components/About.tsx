@@ -1,8 +1,19 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const techStack = [
-  "JavaScript", "TypeScript", "React.js", "Next.js", "Node.js", "Express.js",
-  "TailwindCSS", "Three.js", "React Three Fiber", "GSAP", "MongoDB", "Appwrite", "Hono.js",
+  { name: "JavaScript", color: "text-warm" },
+  { name: "TypeScript", color: "text-primary" },
+  { name: "React.js", color: "text-primary" },
+  { name: "Next.js", color: "text-foreground" },
+  { name: "Node.js", color: "text-lime" },
+  { name: "Express.js", color: "text-lime" },
+  { name: "TailwindCSS", color: "text-primary" },
+  { name: "Three.js", color: "text-accent" },
+  { name: "React Three Fiber", color: "text-accent" },
+  { name: "GSAP", color: "text-lime" },
+  { name: "MongoDB", color: "text-lime" },
+  { name: "Appwrite", color: "text-rose" },
+  { name: "Hono.js", color: "text-warm" },
 ];
 
 const About = () => {
@@ -37,17 +48,44 @@ const About = () => {
         </div>
       </div>
 
-      {/* Tech stack marquee */}
-      <div className="reveal mt-24 overflow-hidden border-t border-b border-border py-6">
-        <div className="flex animate-marquee whitespace-nowrap">
-          {[...techStack, ...techStack].map((tech, i) => (
-            <span
-              key={i}
-              className="mx-8 font-mono text-sm tracking-widest uppercase text-muted-foreground/60"
-            >
-              {tech}
-            </span>
-          ))}
+      {/* Enhanced Tech Stack */}
+      <div className="reveal mt-24">
+        <p className="font-mono text-[10px] tracking-[0.4em] uppercase text-muted-foreground/50 mb-6 text-center">
+          Technologies I work with
+        </p>
+
+        {/* Marquee row 1 */}
+        <div className="relative overflow-hidden py-4 border-t border-border">
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10" />
+          <div className="flex animate-marquee whitespace-nowrap">
+            {[...techStack, ...techStack].map((tech, i) => (
+              <span
+                key={i}
+                className={`mx-6 font-mono text-sm md:text-base font-bold tracking-widest uppercase ${tech.color} transition-colors duration-300`}
+              >
+                {tech.name}
+                <span className="mx-6 text-border">·</span>
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Marquee row 2 — reverse */}
+        <div className="relative overflow-hidden py-4 border-b border-border">
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10" />
+          <div className="flex whitespace-nowrap" style={{ animation: "marquee 30s linear infinite reverse" }}>
+            {[...techStack.slice().reverse(), ...techStack.slice().reverse()].map((tech, i) => (
+              <span
+                key={i}
+                className={`mx-6 font-mono text-sm md:text-base font-bold tracking-widest uppercase ${tech.color} transition-colors duration-300`}
+              >
+                {tech.name}
+                <span className="mx-6 text-border">·</span>
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>
