@@ -43,9 +43,10 @@ const Hero = () => {
         }}
       />
 
-      {/* Ambient orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary/5 blur-[120px] animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-primary/3 blur-[100px] animate-pulse" style={{ animationDelay: "1s" }} />
+      {/* Ambient orbs — multi-color */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[120px] animate-pulse" style={{ background: "hsl(195 100% 50% / 0.04)" }} />
+      <div className="absolute bottom-1/3 right-1/4 w-72 h-72 rounded-full blur-[100px] animate-pulse" style={{ background: "hsl(270 80% 65% / 0.04)", animationDelay: "1s" }} />
+      <div className="absolute top-1/2 right-1/3 w-48 h-48 rounded-full blur-[80px] animate-pulse" style={{ background: "hsl(35 100% 60% / 0.03)", animationDelay: "2s" }} />
 
       {/* Name */}
       <div className="relative z-10 text-center px-4">
@@ -95,11 +96,12 @@ const Hero = () => {
           </p>
         </div>
 
-        {/* Decorative line */}
+        {/* Decorative line — multi-color gradient */}
         <div
-          className="mx-auto mt-6 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent transition-all duration-1000 delay-[2000ms]"
+          className="mx-auto mt-6 h-px transition-all duration-1000 delay-[2000ms]"
           style={{
             width: subtitleVisible ? "200px" : "0px",
+            background: "linear-gradient(90deg, transparent, hsl(195 100% 50% / 0.6), hsl(270 80% 65% / 0.4), transparent)",
           }}
         />
       </div>
