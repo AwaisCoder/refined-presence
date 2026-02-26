@@ -1,5 +1,13 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
+const dotColors = [
+  "bg-primary shadow-[0_0_12px_hsl(195_100%_50%/0.6)]",
+  "bg-accent shadow-[0_0_12px_hsl(270_80%_65%/0.6)]",
+  "bg-warm shadow-[0_0_12px_hsl(35_100%_60%/0.6)]",
+];
+
+const companyColors = ["text-primary", "text-accent", "text-warm"];
+
 const experiences = [
   {
     role: "AI/ML Intern",
@@ -31,14 +39,14 @@ const Experience = () => {
     <section id="experience" ref={ref} className="py-32 px-6 md:px-12 max-w-7xl mx-auto">
       {/* Section label */}
       <div className="reveal flex items-center gap-4 mb-20">
-        <span className="font-mono text-xs tracking-[0.3em] uppercase text-primary">03</span>
+        <span className="font-mono text-xs tracking-[0.3em] uppercase text-accent">03</span>
         <div className="h-px flex-1 bg-border" />
         <span className="font-mono text-xs tracking-[0.3em] uppercase text-muted-foreground">Experience</span>
       </div>
 
       <div className="relative">
-        {/* Timeline line */}
-        <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px" />
+        {/* Timeline line — gradient */}
+        <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px md:-translate-x-px" style={{ background: "linear-gradient(to bottom, hsl(195 100% 50%), hsl(270 80% 65%), hsl(35 100% 60%))" }} />
 
         {experiences.map((exp, i) => (
           <div
@@ -50,7 +58,7 @@ const Experience = () => {
           >
             {/* Glowing dot */}
             <div
-              className={`absolute top-2 w-3 h-3 rounded-full bg-primary shadow-[0_0_12px_hsl(195_100%_50%/0.6)] ${
+              className={`absolute top-2 w-3 h-3 rounded-full ${dotColors[i]} ${
                 i % 2 === 0
                   ? "left-[-6px] md:left-auto md:right-[-6px]"
                   : "left-[-6px]"
@@ -59,7 +67,7 @@ const Experience = () => {
             />
 
             <h3 className="font-display text-2xl md:text-3xl font-bold">{exp.role}</h3>
-            <p className="font-mono text-xs tracking-[0.2em] uppercase text-primary mt-2">{exp.company}</p>
+            <p className={`font-mono text-xs tracking-[0.2em] uppercase ${companyColors[i]} mt-2`}>{exp.company}</p>
             <span className="inline-block font-mono text-[10px] tracking-widest uppercase text-muted-foreground mt-2 px-2 py-0.5 border border-border">
               {exp.duration}
             </span>

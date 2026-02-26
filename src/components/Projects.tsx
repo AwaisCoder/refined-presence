@@ -1,5 +1,12 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
+const accentColors = ["text-primary", "text-accent", "text-warm", "text-rose"];
+const dotColors = [
+  "bg-primary shadow-[0_0_12px_hsl(195_100%_50%/0.6)]",
+  "bg-accent shadow-[0_0_12px_hsl(270_80%_65%/0.6)]",
+  "bg-warm shadow-[0_0_12px_hsl(35_100%_60%/0.6)]",
+];
+
 const projects = [
   {
     num: "01",
@@ -54,15 +61,21 @@ const Projects = () => {
       <div className="space-y-0">
         {projects.map((project, idx) => (
           <div key={project.num}>
-            <div className="reveal py-16 md:py-24 grid md:grid-cols-12 gap-8 items-start" style={{ transitionDelay: `${idx * 100}ms` }}>
+            <div
+              className="reveal group py-16 md:py-24 grid md:grid-cols-12 gap-8 items-start relative rounded-lg transition-all duration-500 hover:bg-secondary/30 md:-mx-6 md:px-6"
+              style={{ transitionDelay: `${idx * 100}ms` }}
+            >
+              {/* Hover accent bar */}
+              <div className={`absolute left-0 top-0 bottom-0 w-px ${accentColors[idx]} opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-current`} />
+
               {/* Number */}
               <div className="md:col-span-1">
-                <span className="font-mono text-xs text-primary/60">{project.num}</span>
+                <span className={`font-mono text-xs ${accentColors[idx]}/60`}>{project.num}</span>
               </div>
 
               {/* Title */}
               <div className="md:col-span-5">
-                <h3 className="font-display text-4xl md:text-6xl font-bold tracking-tight leading-none">
+                <h3 className="font-display text-4xl md:text-6xl font-bold tracking-tight leading-none group-hover:text-foreground transition-colors duration-300">
                   {project.title}
                 </h3>
                 <p className="font-mono text-xs tracking-[0.2em] uppercase text-muted-foreground mt-3">
@@ -80,7 +93,7 @@ const Projects = () => {
                   {project.tech.map((t) => (
                     <span
                       key={t}
-                      className="font-mono text-[10px] tracking-widest uppercase px-3 py-1 border border-border text-muted-foreground"
+                      className="font-mono text-[10px] tracking-widest uppercase px-3 py-1 border border-border text-muted-foreground group-hover:border-muted-foreground/30 transition-colors duration-300"
                     >
                       {t}
                     </span>
@@ -91,10 +104,10 @@ const Projects = () => {
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block font-mono text-xs tracking-[0.2em] uppercase text-primary hover:text-foreground transition-colors duration-300 group"
+                  className={`inline-block font-mono text-xs tracking-[0.2em] uppercase ${accentColors[idx]} hover:text-foreground transition-colors duration-300 group/link`}
                 >
                   View Project{" "}
-                  <span className="inline-block transition-transform duration-300 group-hover:translate-x-2">→</span>
+                  <span className="inline-block transition-transform duration-300 group-hover/link:translate-x-2">→</span>
                 </a>
               </div>
             </div>
