@@ -24,7 +24,9 @@ const Contact = () => {
         <h2 className="font-display text-5xl md:text-8xl font-bold tracking-tight">
           Let's work
           <br />
-          <span className="text-gradient">together</span>
+          <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(135deg, hsl(195 100% 50%), hsl(270 80% 65%), hsl(340 80% 60%))" }}>
+            together
+          </span>
         </h2>
 
         {/* Email */}
