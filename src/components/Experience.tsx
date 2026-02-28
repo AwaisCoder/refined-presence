@@ -10,26 +10,19 @@ const companyColors = ["text-primary", "text-accent", "text-warm"];
 
 const experiences = [
   {
+    role: "React Developer",
+    company: "Arcitech.ai",
+    duration: "July 2025 to Present",
+    description:
+      "Leading a team of 3 developers to architect and scale Haire.ai. Engineered resilient video streaming that cut interview failure rates by 87.5%. Built complex, role-based dashboards and refactored state management to drop bundle sizes by 80%.",
+  },
+  {
     role: "AI/ML Intern",
     company: "InternPe",
     duration: "November 2023",
     description:
       "Worked on AI and machine learning projects, applying advanced algorithms to real-world problems and improving skills in data analysis, model development, and predictive analytics.",
-  },
-  {
-    role: "Web Developer",
-    company: "Twyster — Final-Year Project",
-    duration: "September 2024",
-    description:
-      "Built Twyster, a Twitter-inspired platform, using the MERN stack and Tailwind CSS. Implemented features like real-time updates and user authentication.",
-  },
-  {
-    role: "Project Manager",
-    company: "MumbaiHacks 2024",
-    duration: "October 2024",
-    description:
-      "Led a team of developers to create a financial advisor bot with personalized investment recommendations, budgeting assistance, and real-time financial tracking.",
-  },
+  }
 ];
 
 const Experience = () => {

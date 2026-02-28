@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
   { label: "Home", href: "#hero" },
@@ -34,7 +35,7 @@ const Navigation = () => {
         </a>
 
         {/* Desktop */}
-        <div className="hidden md:flex gap-8">
+        <div className="hidden md:flex items-center gap-8">
           {links.map((link) => (
             <a
               key={link.href}
@@ -44,6 +45,9 @@ const Navigation = () => {
               {link.label}
             </a>
           ))}
+          <div className="ml-4 border-l border-border/50 pl-8">
+            <ThemeToggle />
+          </div>
         </div>
 
         {/* Mobile toggle */}
@@ -63,6 +67,10 @@ const Navigation = () => {
         } bg-background/95 backdrop-blur-xl border-b border-border`}
       >
         <div className="flex flex-col px-6 py-6 gap-6">
+          <div className="flex justify-between items-center mb-2 pb-6 border-b border-border/50">
+            <span className="font-mono text-xs tracking-widest text-muted-foreground uppercase">Theme</span>
+            <ThemeToggle />
+          </div>
           {links.map((link, i) => (
             <a
               key={link.href}

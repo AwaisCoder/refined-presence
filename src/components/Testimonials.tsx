@@ -3,14 +3,14 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const testimonials = [
   {
-    text: "Working with Awais was a fantastic experience. He transformed our outdated website into a modern, user-friendly platform. His attention to detail and commitment to quality are unmatched.",
-    author: "Aryan Sharma",
-    role: "Team Member",
+    text: "Awais is a proactive engineer who goes far beyond the task list. He took full initiative to overhaul Haire's architectural debt, meticulously restructuring complex code to boost system performance while consistently supporting our cross-functional teams.",
+    author: "Guruprasad Jogu",
+    role: "Team Manager",
   },
   {
-    text: "Awais's expertise in web development is exceptional. He delivered a robust and scalable solution for our e-commerce project showcasing impressive problem-solving skills. His ability to integrate complex features within tight deadlines was remarkable.",
-    author: "Noaman Hakim",
-    role: "Team Member",
+    text: "Awais is an incredibly quick learner who can step into the middle of complex, ongoing work and drive it to completion without missing a beat. He has earned my total confidence; he is the developer I can trust to manage high-stakes projects entirely on his own.",
+    author: "Abhishek Kolhatkar",
+    role: "Team Lead",
   },
 ];
 

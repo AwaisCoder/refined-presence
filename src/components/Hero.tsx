@@ -6,13 +6,21 @@ const Hero = () => {
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
   const [lettersVisible, setLettersVisible] = useState(false);
   const [subtitleVisible, setSubtitleVisible] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
-    const timer1 = setTimeout(() => setLettersVisible(true), 300);
-    const timer2 = setTimeout(() => setSubtitleVisible(true), 1800);
+    const timer1 = setTimeout(() => setLettersVisible(true), 100);
+    const timer2 = setTimeout(() => setSubtitleVisible(true), 800);
+    
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -49,17 +57,26 @@ const Hero = () => {
       <div className="absolute top-1/2 right-1/3 w-48 h-48 rounded-full blur-[80px] animate-pulse" style={{ background: "hsl(35 100% 60% / 0.03)", animationDelay: "2s" }} />
 
       {/* Name */}
-      <div className="relative z-10 text-center px-4">
-        <h1 className="font-display font-bold tracking-[-0.04em] leading-[0.85]">
+      <div 
+        className="relative z-10 text-center px-4 will-change-[transform,opacity,filter]"
+        style={{
+          opacity: Math.max(1 - scrollY / 600, 0),
+          transform: `translateY(${scrollY * 0.4}px) scale(${Math.max(1 - scrollY / 2000, 0.9)})`,
+          filter: `blur(${Math.min(scrollY / 50, 10)}px)`,
+          transition: scrollY === 0 ? "none" : "transform 0.1s ease-out, opacity 0.1s ease-out, filter 0.1s ease-out"
+        }}
+      >
+        <h1 className="font-display font-bold tracking-tighter leading-[0.85]">
           <span className="block" style={{ fontSize: "clamp(3rem, 12vw, 10rem)" }}>
             {firstName.split("").map((letter, i) => (
               <span
                 key={`f-${i}`}
-                className="inline-block transition-all duration-700"
+                className="inline-block transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
                 style={{
                   opacity: lettersVisible ? 1 : 0,
-                  transform: lettersVisible ? "translateY(0) rotateX(0)" : "translateY(60px) rotateX(-90deg)",
-                  transitionDelay: `${i * 80}ms`,
+                  transform: lettersVisible ? "translateY(0) scale(1)" : "translateY(30px) scale(0.9)",
+                  filter: lettersVisible ? "blur(0px)" : "blur(10px)",
+                  transitionDelay: `${i * 40}ms`,
                 }}
               >
                 {letter}
@@ -70,11 +87,12 @@ const Hero = () => {
             {lastName.split("").map((letter, i) => (
               <span
                 key={`l-${i}`}
-                className="inline-block transition-all duration-700"
+                className="inline-block transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
                 style={{
                   opacity: lettersVisible ? 1 : 0,
-                  transform: lettersVisible ? "translateY(0) rotateX(0)" : "translateY(60px) rotateX(-90deg)",
-                  transitionDelay: `${(i + firstName.length) * 80}ms`,
+                  transform: lettersVisible ? "translateY(0) scale(1)" : "translateY(30px) scale(0.9)",
+                  filter: lettersVisible ? "blur(0px)" : "blur(10px)",
+                  transitionDelay: `${(i + firstName.length) * 40}ms`,
                 }}
               >
                 {letter}
@@ -86,22 +104,24 @@ const Hero = () => {
         {/* Subtitle */}
         <div className="mt-8 overflow-hidden">
           <p
-            className="font-mono text-sm md:text-base tracking-[0.3em] uppercase text-muted-foreground transition-all duration-1000"
+            className="font-mono text-sm md:text-base tracking-[0.3em] uppercase text-muted-foreground transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
             style={{
               opacity: subtitleVisible ? 1 : 0,
-              transform: subtitleVisible ? "translateY(0)" : "translateY(20px)",
+              transform: subtitleVisible ? "translateY(0) scale(1)" : "translateY(20px) scale(0.95)",
+              filter: subtitleVisible ? "blur(0px)" : "blur(5px)",
             }}
           >
-            Building WebDev Solutions
+            SOFTWARE DEVELOPER
           </p>
         </div>
 
         {/* Decorative line — multi-color gradient */}
         <div
-          className="mx-auto mt-6 h-px transition-all duration-1000 delay-[2000ms]"
+          className="mx-auto mt-6 h-px transition-all duration-1000 delay-[1200ms] ease-out"
           style={{
             width: subtitleVisible ? "200px" : "0px",
             background: "linear-gradient(90deg, transparent, hsl(195 100% 50% / 0.6), hsl(270 80% 65% / 0.4), transparent)",
+            opacity: subtitleVisible ? 1 : 0,
           }}
         />
       </div>

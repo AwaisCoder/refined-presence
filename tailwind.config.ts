@@ -71,9 +71,10 @@ export default {
         },
       },
       fontFamily: {
-        display: ['"Space Grotesk"', 'sans-serif'],
-        mono: ['"Space Mono"', 'monospace'],
-        serif: ['"Playfair Display"', 'serif'],
+        display: ['var(--font-geist-sans)', 'sans-serif'],
+        mono: ['var(--font-geist-mono)', 'monospace'],
+        serif: ['var(--font-geist-sans)', 'sans-serif'],
+        sans: ['var(--font-geist-sans)', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
